@@ -15,9 +15,13 @@ const app = express();
 
 // Security Middleware
 app.use(helmet());
+
+// ✅ FIXED CORS CONFIGURATION - Allow all origins for now
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
+  origin: true,  // Allow all origins during testing
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
 }));
 
 // Rate Limiting
